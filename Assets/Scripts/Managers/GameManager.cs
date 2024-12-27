@@ -1,75 +1,115 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
-public enum GameState
+public class GameManager : MonoBehaviour
 {
-    PLAY,
-    PAUSE,
-    WIN,
-    LOSE,
-    MAINMENU,
-}
-
-public class GameManager : Singleton<GameManager>
-{
-    #region Properties
-    private GameState gameState = GameState.MAINMENU;
-    public GameState GameState
+    [SerializeField] GameObject HealthImg;
+    [SerializeField] AudioManager asm; 
+    [SerializeField] AudioClip LossSound;
+    public static GameManager Instance { get; private set; }
+    public enum GameState
     {
-        get
-        {
-            return gameState;
-        }
-        set
-        {
-            if (gameState == value) return;
-            gameState = value;
-            OnGameStateChanged?.Invoke();
-        }
+        GAME,
+        PAUSE,
+        DEFEAT,
+        WIN
     }
-    #endregion
-
-    #region Cleanup
-    static public bool cleanedUp = false;
-    public event Action OnApplicationCleanup;
-
-    private void OnApplicationQuit()
-    {
-        OnApplicationCleanup?.Invoke();
-        cleanedUp = true;
-    }
-    #endregion
+    [SerializeField] private GameState currentState; 
 
     public event Action OnGameStateChanged;
 
-    protected override void Awake()
+    public void Awake()
     {
-        base.Awake();
-        OnGameStateChanged += DetermineCursorState;
-        OnGameStateChanged += SetTimeScale;
+        if (Instance == null)
+            Instance = this;
+
+        if (Instance != this)
+            Destroy(gameObject);
     }
 
-    #region GameStateChangeEffects
-    private void SetTimeScale()
+    public int Score
     {
-        if (GameState != GameState.PAUSE) Time.timeScale = 1f;
+        get => score;
+        set
+        {
+            score = value;
+
+            if (OnScoreValueChanged != null)
+                OnScoreValueChanged.Invoke(score); 
+        }
+    }
+    private int score = 0;
+    public UnityEvent<int> OnScoreValueChanged;
+
+    public int Lives
+    {
+        get => lives;
+        set
+        {
+            lives = value;
+
+            if (lives > maxLives) lives = maxLives;
+
+            Debug.Log("Lives value has changed to " + lives.ToString());
+            if (lives < 0)
+                StartCoroutine(DelayedGameOver(0.5f)); 
+
+            DecreaseHealthBar(); 
+
+            if (OnLifeValueChanged != null)
+                OnLifeValueChanged.Invoke(lives);
+        }
     }
 
-    private void DetermineCursorState()
+    public UnityEvent<int> OnLifeValueChanged;
+
+    private int lives = 3;
+    public int maxLives = 3;
+
+    public void DecreaseHealthBar()
     {
-        if (gameState == GameState.PLAY)
+        if (HealthImg != null)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            RectTransform healthRectTransform = HealthImg.GetComponent<RectTransform>();
+            healthRectTransform.sizeDelta -= new Vector2(10f, 0f); 
         }
     }
-    #endregion
+
+    IEnumerator DelayedGameOver(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameOver();
+    }
+
+    void GameOver()
+    {
+        SwitchState(GameState.DEFEAT); 
+        SceneManager.LoadScene("GameOver");
+        asm.PlayOneShot(LossSound, false);  
+
+        if (SceneManager.GetActiveScene().name == "GameOver")
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+                Lives = 3;
+                Score = 3;
+            }
+    }
+
+    public GameState GetGameState()
+    {
+        return currentState;
+    }
+
+    public void SwitchState(GameState newState)
+    {
+        Debug.Log("New state has been set to " + newState); 
+        currentState = newState;
+        OnGameStateChanged?.Invoke(); 
+    }
 }
+

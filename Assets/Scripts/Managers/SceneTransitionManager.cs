@@ -1,101 +1,88 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitionManager : Singleton<SceneTransitionManager>
-{
+public class SceneTransitionManager : MonoBehaviour
+{ 
+    public static SceneTransitionManager Instance { get; private set; }
+
     [Header("Components")]
     [SerializeField] private CanvasGroup fadeImg;
-    [SerializeField] private float fadeTime = 0.3f;
+    [SerializeField] private float fadeDuration = 0.3f;
 
-    private bool inTransition = false;
+    private bool isTransitioning = false;
 
-    public event Action BeforeSceneChange;
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+
+        if (Instance != this)
+            Destroy(this.gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
         StartCoroutine(FadeOut());
-        DetermineGameState();
-        SceneManager.sceneLoaded += OnSceneLoad;
     }
 
-    private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    private void OnLevelWasLoaded(int level)
     {
         StartCoroutine(FadeOut());
-        DetermineGameState();
     }
 
-    public void LoadScene(int scene)
+    public void LoadScene(string sceneName)
     {
-        if (inTransition) return;
+        if (isTransitioning) return;
 
-        inTransition = true;
-        StartCoroutine(FadeIn(scene));
+        isTransitioning = true;
+        StartCoroutine(FadeIn(sceneName));
     }
 
     public void RestartScene()
     {
-        int scene = SceneManager.GetActiveScene().buildIndex;
+        string scene = SceneManager.GetActiveScene().name;
         LoadScene(scene);
     }
 
-    public void DetermineGameState()
+    private IEnumerator FadeIn(string sceneName)
     {
-        switch (SceneManager.GetActiveScene().buildIndex)
+        float timeElapsed = 0.0f;
+        while (timeElapsed <= fadeDuration)
         {
-            case 0:
-                GameManager.Instance.GameState = GameState.MAINMENU;
-                break;
-            case 1:
-                GameManager.Instance.GameState = GameState.PLAY;
-                break;
-            case 2:
-                GameManager.Instance.GameState = GameState.WIN;
-                break;
-            case 3:
-                GameManager.Instance.GameState = GameState.LOSE;
-                break;
-        }
-    }
-
-    private IEnumerator FadeIn(int scene)
-    {
-        float timer = 0f;
-        while (timer < fadeTime)
-        {
-            fadeImg.alpha = timer / fadeTime;
-            timer += Time.unscaledDeltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
+            fadeImg.alpha = Mathf.Lerp(0.0f, 1.0f, timeElapsed / fadeDuration);
             yield return null;
         }
-        fadeImg.alpha = 1f;
 
-        BeforeSceneChange?.Invoke();
-        SceneManager.LoadScene(scene);
+        fadeImg.alpha = 1.0f;
+        yield return null;
+
+        SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator FadeOut()
     {
-        inTransition = true;
+        isTransitioning = true;
 
-        float timer = 0f;
+        float timeElapsed = 0.0f;
 
-        fadeImg.alpha = 1f;
-        while (timer < fadeTime)
+        fadeImg.alpha = 1.0f;
+
+        while (timeElapsed <= fadeDuration)
         {
-            fadeImg.alpha = 1 - (timer / fadeTime);
-            timer += Time.unscaledDeltaTime;
+
+            fadeImg.alpha = Mathf.Lerp(1.0f, 0.0f, timeElapsed / fadeDuration);
+            timeElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        fadeImg.alpha = 0f;
 
-        inTransition = false;
+        fadeImg.alpha = 0.0f;
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            DetermineGameState();
-        }
+        isTransitioning = false;
     }
+
+
 }
