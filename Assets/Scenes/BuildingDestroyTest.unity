@@ -573,7 +573,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a57130cbfa570644f8103eea136dfcd1, type: 2}
+  - {fileID: 2100000, guid: 62046981a741ec742a6c8b00849ce339, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -859,6 +859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingInTact
       objectReference: {fileID: 0}
+    - target: {fileID: 8725345603376143501, guid: 478c613f745371e4da9972a144d0a6ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6dd3589ddc125e843a66c80c30662991, type: 2}
     m_RemovedComponents:
     - {fileID: 9102721517619144872, guid: 478c613f745371e4da9972a144d0a6ec, type: 3}
     m_RemovedGameObjects: []
