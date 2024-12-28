@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour, CauseDamage
+public class Animal : MonoBehaviour, ICauseDamage
 {
     public event Action<AnimalStates> onStateChanged;
 
@@ -66,7 +66,7 @@ public class Animal : MonoBehaviour, CauseDamage
             Debug.LogError("No Rigidbody found on the Animal!");
 
         currentTarget = pointB;
-        CurrentState = AnimalStates.Idle;
+        CurrentState = AnimalStates.Walking;
 
         switch (animalType)
         {
@@ -126,6 +126,11 @@ public class Animal : MonoBehaviour, CauseDamage
     {
         Debug.Log("Setting Dead State");
         Destroy(gameObject, 2f);
+    }
+
+    public void SwitchState(AnimalStates state)
+    {
+        CurrentState = state; 
     }
 
     public void CauseDamageOnImpact(float velocity, int damage, HealthSystem healthSystem)

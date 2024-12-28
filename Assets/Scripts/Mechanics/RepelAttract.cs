@@ -103,6 +103,7 @@ public class RepelAttract : MonoBehaviour
     {
         if (other.GetComponent<Animal>())
         {
+            Debug.Log("Collected an animal"); 
             Destroy(other.gameObject); 
         }
     }
