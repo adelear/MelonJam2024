@@ -20,9 +20,13 @@ public class RepelAttract : MonoBehaviour
     float timer; 
 
     private Transform currentObject;
+
+    private SphereCollider sc; 
     private void Start()
     {
         timer = 0; 
+        sc = GetComponent<SphereCollider>();
+        sc.enabled = false;
     }
     void Update()
     {
@@ -37,12 +41,14 @@ public class RepelAttract : MonoBehaviour
                 Debug.Log($"Hit {hit.collider.name}");
                 currentObject = hit.collider.transform;
                 timer += Time.deltaTime; 
-                AttractObject(currentObject, timer); 
+                AttractObject(currentObject, timer);
+                sc.enabled = true;
             }
             else
             {
                 if (currentObject == null) return; 
                 if (Vector3.Distance(currentObject.position, ship.position) > 0.4f) currentObject.GetComponent<Rigidbody>().useGravity = true;
+                sc.enabled = false;
             }
         }
         else if (Input.GetMouseButton(1))
@@ -51,7 +57,8 @@ public class RepelAttract : MonoBehaviour
             {
                 Debug.Log($"Hit {hit.collider.name}");
                 currentObject = hit.collider.transform;
-                RepelObject(currentObject); 
+                RepelObject(currentObject);
+                sc.enabled = false;
             }
             
         }
@@ -61,6 +68,7 @@ public class RepelAttract : MonoBehaviour
             {
                 currentObject.GetComponent<Rigidbody>().useGravity = true;
                 currentObject = null;
+                sc.enabled = false; 
             }
             
         }
@@ -80,12 +88,7 @@ public class RepelAttract : MonoBehaviour
             objectToAttract.position = targetPosition; 
             //objectToAttract.position = new Vector3(targetPosition.x, Mathf.Cos(time * (moveSpeed/2)/ Mathf.PI) * (targetPosition.y - 2), targetPosition.z); 
             //Destroy when it reaches target --> Make it so that ++ points or whatever ONLY IF ITS AN ANIMAL 
-            if (objectToAttract.GetComponent<Animal>())
-            {
-                currentObject.gameObject.SetActive(false); 
-                currentObject = null;
-                Debug.Log("Destroyed Object"); 
-            }
+            
         }
     }
 
@@ -94,5 +97,13 @@ public class RepelAttract : MonoBehaviour
         Rigidbody rb = objectToRepel.GetComponent<Rigidbody>();
         rb.AddForce(0, repelSpeed, 0, ForceMode.Impulse); 
         currentObject.GetComponent<Rigidbody>().useGravity = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Animal>())
+        {
+            Destroy(other.gameObject); 
+        }
     }
 }
