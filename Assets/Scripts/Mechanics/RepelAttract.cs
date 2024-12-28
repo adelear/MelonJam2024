@@ -16,7 +16,7 @@ public class RepelAttract : MonoBehaviour
     public float rayLength = 10f;  
     public float moveSpeed = 5f; 
     public Transform ship; 
-    public float repelDistance = 10f;
+    public float repelSpeed = 10f;
     float timer; 
 
     private Transform currentObject;
@@ -41,6 +41,7 @@ public class RepelAttract : MonoBehaviour
             }
             else
             {
+                if (currentObject == null) return; 
                 if (Vector3.Distance(currentObject.position, ship.position) > 0.4f) currentObject.GetComponent<Rigidbody>().useGravity = true;
             }
         }
@@ -90,9 +91,8 @@ public class RepelAttract : MonoBehaviour
 
     private void RepelObject(Transform objectToRepel)
     {
-        Vector3 repelDirection = (objectToRepel.position - rayOrigin.position).normalized;
+        Rigidbody rb = objectToRepel.GetComponent<Rigidbody>();
+        rb.AddForce(0, repelSpeed, 0, ForceMode.Impulse); 
         currentObject.GetComponent<Rigidbody>().useGravity = true;
-        Vector3 repelTarget = objectToRepel.position + repelDirection * repelDistance;
-        objectToRepel.position = Vector3.MoveTowards(objectToRepel.position, repelTarget, moveSpeed * Time.deltaTime);
     }
 }
