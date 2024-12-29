@@ -107,7 +107,7 @@ public class TankController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; 
         angle = Mathf.Clamp(angle, 0f, 180f);
-        Quaternion targetRotation = Quaternion.Euler(180f, 0f, angle);
+        Quaternion targetRotation = Quaternion.Euler(180f, 0f, -angle);
         barrel.rotation = Quaternion.Lerp(barrel.rotation, targetRotation, Time.deltaTime * barrelRotationSpeed);
     }
 
