@@ -17,9 +17,11 @@ public class RepelAttract : MonoBehaviour
     public float moveSpeed = 5f; 
     public Transform ship; 
     public float repelSpeed = 10f;
-    float timer; 
+    float timer;
 
-    private Transform currentObject;
+    public bool isAttracting; 
+
+    public Transform currentObject;
 
     private SphereCollider sc; 
     private void Start()
@@ -38,11 +40,18 @@ public class RepelAttract : MonoBehaviour
         {
             if (Physics.Raycast(rayOrigin.position, rayDirection1, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection2, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection3, out hit, rayLength, layermask))
             {
-                Debug.Log($"Hit {hit.collider.name}");
-                currentObject = hit.collider.transform;
-                timer += Time.deltaTime; 
-                AttractObject(currentObject, timer);
-                sc.enabled = true;
+                Vector3 rayOriginFlat = new Vector3(rayOrigin.position.x, rayOrigin.position.y, 0f);
+                Vector3 hitPointFlat = new Vector3(hit.point.x, hit.point.y, 0f);
+
+                // Check distance in the x-y plane
+                if (Vector3.Distance(rayOriginFlat, hitPointFlat) <= rayLength)
+                {
+                    Debug.Log($"Hit {hit.collider.name}");
+                    currentObject = hit.collider.transform;
+                    timer += Time.deltaTime;
+                    AttractObject(currentObject, timer);
+                    sc.enabled = true;
+                }
             }
             else
             {
@@ -68,7 +77,8 @@ public class RepelAttract : MonoBehaviour
             {
                 currentObject.GetComponent<Rigidbody>().useGravity = true;
                 currentObject = null;
-                sc.enabled = false; 
+                sc.enabled = false;
+                isAttracting = false; 
             }
             
         }
@@ -78,6 +88,7 @@ public class RepelAttract : MonoBehaviour
     private void AttractObject(Transform objectToAttract,float time)
     {
         Vector3 targetPosition = ship.position;
+        isAttracting = true; 
         if (Vector3.Distance(objectToAttract.position, targetPosition) > 0.4f)
         {
             currentObject.position = Vector3.MoveTowards(objectToAttract.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -97,6 +108,7 @@ public class RepelAttract : MonoBehaviour
         Rigidbody rb = objectToRepel.GetComponent<Rigidbody>();
         rb.AddForce(0, repelSpeed, 0, ForceMode.Impulse); 
         currentObject.GetComponent<Rigidbody>().useGravity = true;
+        isAttracting = false; 
     }
 
     private void OnTriggerEnter(Collider other)
