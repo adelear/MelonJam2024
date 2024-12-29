@@ -60,7 +60,7 @@ public class MilitaryManager : MonoBehaviour
 
         for (int i = 0; i < count && totalSpawnedTanks < maxTanks; i++)
         {
-            Vector3 spawnPosition = new Vector3(mainCamera.transform.position.x + 20f,0f,0f);
+            Vector3 spawnPosition = new Vector3(mainCamera.transform.position.x + 20f,1.3f,0f);
 
             GameObject newTank = Instantiate(tankPrefab, spawnPosition, Quaternion.identity);
             activeTanks.Add(newTank);

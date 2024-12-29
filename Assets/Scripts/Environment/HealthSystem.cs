@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Settings")]
     public int healthMax = 100;
     private int health;
+    float currentHeight; 
 
     [Header("UI Settings")]
     public Image healthBarImage;
@@ -22,6 +23,7 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         health = healthMax;
+        currentHeight = healthBarImage.rectTransform.sizeDelta.y; 
         UpdateHealthBar(); 
     }
 
@@ -37,7 +39,7 @@ public class HealthSystem : MonoBehaviour
 
     public float GetHealthToHealthMaxRatio()
     {
-        return (float)health / healthMax;
+        return Mathf.Clamp((float)health / healthMax, 0f, 1f);
     }
 
     public void GetDamaged(int damage)
@@ -98,13 +100,12 @@ public class HealthSystem : MonoBehaviour
     {
         if (healthBarImage != null)
         {
-            float currentHeight = healthBarImage.rectTransform.sizeDelta.y;
             float healthRatio = GetHealthToHealthMaxRatio();
-            float targetHeight = healthRatio * healthBarImage.rectTransform.sizeDelta.y;
-            float newHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * 10f);
-
-            healthBarImage.rectTransform.sizeDelta = new Vector2(healthBarImage.rectTransform.sizeDelta.x, newHeight);
+            float targetHeight = healthRatio * currentHeight;
+            float heightRn = healthBarImage.rectTransform.sizeDelta.y; 
+            healthBarImage.rectTransform.sizeDelta = new Vector2(healthBarImage.rectTransform.sizeDelta.x, targetHeight);
         }
     }
+
 
 }

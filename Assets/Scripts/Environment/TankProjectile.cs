@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankProjectile : MonoBehaviour, ICauseDamage
 {
-    int damage = 10; 
+    int damage = 5; 
     public void CauseDamageOnImpact(float velocity, int damage, HealthSystem healthSystem)
     {
         healthSystem.GetDamaged(damage);

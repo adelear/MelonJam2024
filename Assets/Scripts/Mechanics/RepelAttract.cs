@@ -116,7 +116,16 @@ public class RepelAttract : MonoBehaviour
     {
         if (other.GetComponent<Animal>())
         {
-            Debug.Log("Collected an animal"); 
+            Debug.Log("Collected an animal");
+            int score = 0; 
+            switch (other.GetComponent<Animal>().animalType)
+            {
+                case AnimalType.Cow: score = 5; break;
+                case AnimalType.Dog: score = 3; break;
+                case AnimalType.Cat: score = 2; break;
+                default: score = 0; break; 
+            }
+            GameManager.Instance.Score += score; 
             Destroy(other.gameObject); 
         }
     }
