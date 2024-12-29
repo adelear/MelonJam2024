@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.GetGameState() != GameManager.GameState.GAME) return; 
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         }
 
         float targetZPosition = currentLayer * layerDistance;
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, targetZPosition, Time.deltaTime * 1f)); 
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(transform.position.z, targetZPosition, Time.deltaTime * 2f)); 
         if (repelAttract.currentObject != null && repelAttract.isAttracting)
         {
             repelAttract.currentObject.position = new Vector3(repelAttract.currentObject.position.x, repelAttract.currentObject.position.y, Mathf.Lerp(transform.position.z, targetZPosition, Time.deltaTime * 1f)); 

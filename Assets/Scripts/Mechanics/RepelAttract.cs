@@ -32,6 +32,7 @@ public class RepelAttract : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.Instance.GetGameState() != GameManager.GameState.GAME) return; 
         Debug.DrawRay(rayOrigin.position, rayDirection1.normalized * rayLength, Color.green);
         Debug.DrawRay(rayOrigin.position, rayDirection2.normalized * rayLength, Color.green);
         Debug.DrawRay(rayOrigin.position, rayDirection3.normalized * rayLength, Color.green);
