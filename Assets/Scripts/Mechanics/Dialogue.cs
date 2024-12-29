@@ -73,7 +73,7 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(false);
             // Trigger Ending Received 
             // Move to gameOver
-            GameManager.Instance.SwitchState(GameManager.GameState.DEFEAT);
+            GameManager.Instance.SwitchState(GameManager.GameState.WIN);
             Debug.Log("Game Over");
             SceneTransitionManager.Instance.LoadScene("MainMenu");
         }

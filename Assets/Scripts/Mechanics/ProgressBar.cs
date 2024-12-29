@@ -6,6 +6,7 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
     [SerializeField] private Transform player;
+    [SerializeField] private GameObject endDialogue; 
 
     private Slider progressSlider;
 
@@ -28,6 +29,16 @@ public class ProgressBar : MonoBehaviour
             float playerDistance = Mathf.Abs(startPoint.position.x - player.position.x);
             float progress = Mathf.Clamp01(playerDistance / totalDistance);
             progressSlider.value = progress;
+            if (progress >= 1f)
+            {
+                OnPlayerReachEnd();
+            }
         }
+    }
+
+    private void OnPlayerReachEnd()
+    {
+        Debug.Log("Player has reached the end!");
+        endDialogue.SetActive(true); 
     }
 }
