@@ -5,7 +5,7 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
-
+ 
 public class RepelAttract : MonoBehaviour
 {
     public LayerMask layermask;

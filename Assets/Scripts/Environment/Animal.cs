@@ -142,6 +142,7 @@ public class Animal : MonoBehaviour, ICauseDamage
     public void DieUponImpact()
     { 
         CurrentState = AnimalStates.Dead;
+        MilitaryManager.Instance.AddMilitaryPoints(5); 
     }
 
     private void OnCollisionEnter(Collision collision)
