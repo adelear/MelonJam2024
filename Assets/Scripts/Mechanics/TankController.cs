@@ -134,4 +134,16 @@ public class TankController : MonoBehaviour
             Gizmos.DrawLine(firePoint.position, firePoint.position + barrel.right * 2f);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) return;
+        float impactVelocity = collision.relativeVelocity.magnitude;
+
+        if (impactVelocity > 20f)
+        {
+            Debug.Log("Animal died upon impact with velocity: " + impactVelocity);
+            gameObject.GetComponent<HealthSystem>().GetDamaged(10); 
+        }
+    }
 }
