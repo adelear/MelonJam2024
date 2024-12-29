@@ -8,7 +8,7 @@ public class TankController : MonoBehaviour
 
     [Header("Tank Movement")]
     public float moveSpeed = 2f; 
-    public float stoppingDistance = 5f; 
+    public float stoppingDistance = 10f; 
 
     [Header("Barrel and Shooting")]
     public Transform barrel; 
