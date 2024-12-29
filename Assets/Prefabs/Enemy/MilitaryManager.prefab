@@ -47,4 +47,4 @@ MonoBehaviour:
   militaryPoints: 0
   maxTanks: 10
   player: {fileID: 0}
-  tankPrefab: {fileID: 0}
+  tankPrefab: {fileID: 8757590238516361966, guid: d41014144e94950448100cde8d5597fb, type: 3}
