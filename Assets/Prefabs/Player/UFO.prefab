@@ -211,6 +211,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ce46e714435dd2438ff49e517fc02a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7047970168195026969}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4ce46e714435dd2438ff49e517fc02a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3957644098132946178}
   m_SourcePrefab: {fileID: 100100000, guid: 4ce46e714435dd2438ff49e517fc02a5, type: 3}
 --- !u!4 &2589616363849153422 stripped
 Transform:
@@ -247,7 +250,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 48
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &9149771883980321885
 MonoBehaviour:
@@ -262,6 +265,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  tiltAngle: 15
+  tiltSpeed: 5
+  recenterSpeed: 2
+  layerDistance: 5
+  maxLayers: 2
 --- !u!114 &6393405347326887349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +293,8 @@ MonoBehaviour:
   moveSpeed: 10
   ship: {fileID: 7855055704624870764}
   repelSpeed: -5
+  isAttracting: 0
+  currentObject: {fileID: 0}
 --- !u!64 &178102488578490699
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -328,3 +338,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 24.58
   m_Center: {x: 0, y: 0.8554765, z: -14.73}
+--- !u!114 &3957644098132946178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935215492294779188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f6888ef813dc499bdb76ca51067be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
