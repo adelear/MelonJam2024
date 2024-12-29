@@ -29,6 +29,7 @@ public class RegularDamagable : MonoBehaviour, ICauseDamage
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Player")) return; 
         float impactVelocity = collision.relativeVelocity.magnitude;
         if (collision.gameObject.GetComponent<HealthSystem>() && impactVelocity > 20)
         {
