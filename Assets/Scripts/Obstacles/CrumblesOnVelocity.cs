@@ -5,19 +5,27 @@ using UnityEngine;
 public class CrumblesOnVelocity : MonoBehaviour
 {
     [SerializeField] GameObject crumbledObject;
-    public float threshold; 
+    public float threshold;
+    public int health = 100; 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Rigidbody>())
         {
-            Debug.Log("Velocity: " + collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude); 
-            if (collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude > threshold)
+            Debug.Log("Velocity: " + collision.relativeVelocity.magnitude);
+            if (collision.relativeVelocity.magnitude > threshold)
             {
-                Instantiate(crumbledObject, gameObject.transform.position, gameObject.transform.rotation);
-                Destroy(gameObject); 
-                // Just have the building with the destroyed version of itself in the same spot, just set inactive,
-                // and instead of destroying and spawning, set this object inactive, set destroyed object active
-            } 
+                health -= 10; 
+                Debug.Log("Health: " + health);
+                if (health <= 0) Crumble();
+            }
         }
+    }
+
+    private void Crumble()
+    {
+        crumbledObject.SetActive(true);
+        gameObject.SetActive(false);
+        Debug.Log("Object crumbled!");
     }
 }
