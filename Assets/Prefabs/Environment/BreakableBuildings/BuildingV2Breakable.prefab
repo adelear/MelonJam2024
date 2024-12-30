@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crumbledObject: {fileID: 5581266844348676196}
-  threshold: 10
+  threshold: 20
   health: 200
 --- !u!65 &6858854917419978611
 BoxCollider:
