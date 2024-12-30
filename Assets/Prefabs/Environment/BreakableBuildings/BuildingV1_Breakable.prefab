@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3207730658798127376}
   m_Layer: 0
-  m_Name: BuildingV1_Intact
+  m_Name: BuildingV1_Breakable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -305,3 +305,5 @@ MonoBehaviour:
   textSpeed: 0.05
   isOutro: 0
   dialogueSound: {fileID: 8300000, guid: 40caa6eb282c51547afab130b0935b9e, type: 3}
+  firstLineAudioClip: {fileID: 0}
+  playAudioFirstLine: 0

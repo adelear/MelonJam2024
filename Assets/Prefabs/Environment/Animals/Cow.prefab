@@ -153,6 +153,14 @@ PrefabInstance:
       value: CowDie
       objectReference: {fileID: 0}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: fallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ff98ef6a69ea15d47baad801e6ebd206, type: 3}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: abductSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 96864bd936f668f469aaf403c176a69f, type: 3}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deathVelocityThreshold
       value: 30
       objectReference: {fileID: 0}

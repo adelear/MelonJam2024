@@ -153,6 +153,10 @@ PrefabInstance:
       value: CatDie
       objectReference: {fileID: 0}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: fallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fefe449240a2e448915d51b8e88b502, type: 3}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: walkSpeed
       value: 4
       objectReference: {fileID: 0}
@@ -160,6 +164,10 @@ PrefabInstance:
       propertyPath: animalType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: abductSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6eb657b085e4b7644bf9b33905193bb9, type: 3}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deathVelocityThreshold
       value: 30

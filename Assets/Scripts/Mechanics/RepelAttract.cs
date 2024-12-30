@@ -24,7 +24,9 @@ public class RepelAttract : MonoBehaviour
     public Transform currentObject;
 
     [SerializeField] private GameObject attractBeam;
-    [SerializeField] private GameObject repelBeam; 
+    [SerializeField] private GameObject repelBeam;
+    private bool hasPlayedAbductedAudio;
+    private bool hasPlayedRepelAudio; 
 
     private SphereCollider sc; 
     private void Start()
@@ -34,6 +36,9 @@ public class RepelAttract : MonoBehaviour
         sc.enabled = false;
         repelBeam.SetActive(false);
         attractBeam.SetActive(false);
+
+        hasPlayedAbductedAudio = false;
+        hasPlayedAbductedAudio = false; 
     }
     void Update()
     {
@@ -88,6 +93,12 @@ public class RepelAttract : MonoBehaviour
             if (currentObject != null)
             {
                 currentObject.GetComponent<Rigidbody>().useGravity = true;
+                if (currentObject.gameObject.GetComponent<Animal>())
+                {
+                    Animal animal = currentObject.gameObject.GetComponent<Animal>();
+                    hasPlayedRepelAudio = false;
+                    hasPlayedAbductedAudio = false; 
+                } 
                 currentObject = null;
                 sc.enabled = false;
                 isAttracting = false; 
@@ -113,6 +124,14 @@ public class RepelAttract : MonoBehaviour
             //Destroy when it reaches target --> Make it so that ++ points or whatever ONLY IF ITS AN ANIMAL 
             
         }
+
+        if (currentObject.gameObject.GetComponent<Animal>() && !hasPlayedAbductedAudio)
+        {
+            Animal animal = currentObject.gameObject.GetComponent<Animal>();
+            if (animal.abductSound!= null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.abductSound, false, 1.2f, 2f, 0.05f); 
+            hasPlayedAbductedAudio = true;
+            hasPlayedRepelAudio = false; 
+        }
     }
 
     private void RepelObject(Transform objectToRepel)
@@ -120,7 +139,15 @@ public class RepelAttract : MonoBehaviour
         Rigidbody rb = objectToRepel.GetComponent<Rigidbody>();
         rb.AddForce(0, repelSpeed, 0, ForceMode.Impulse); 
         currentObject.GetComponent<Rigidbody>().useGravity = true;
-        isAttracting = false; 
+        isAttracting = false;
+
+        if (currentObject.gameObject.GetComponent<Animal>() && hasPlayedRepelAudio)
+        {
+            Animal animal = currentObject.gameObject.GetComponent<Animal>();
+            if (animal.abductSound != null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.fallSound, false, 1.2f, 2f, 0.05f);
+            hasPlayedRepelAudio = true;
+            hasPlayedAbductedAudio = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

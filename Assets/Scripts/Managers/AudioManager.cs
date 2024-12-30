@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
         temp.outputAudioMixerGroup = isMusic ? musicGroup : sfxGroup;
     }
 
-    public void PlayOneShotWithRandomPitch(AudioClip clip, bool isMusic, float minPitch, float maxPitch)
+    public void PlayOneShotWithRandomPitch(AudioClip clip, bool isMusic, float minPitch, float maxPitch, float vol)
     {
         Debug.Log("Playing " + clip.name + " with random pitch");
 
@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
 
             float randomPitch = Random.Range(minPitch, maxPitch);
             source.pitch = randomPitch;
-
+            source.volume = vol;
             source.PlayOneShot(clip);
             source.outputAudioMixerGroup = isMusic ? musicGroup : sfxGroup;
             return;

@@ -10,7 +10,8 @@ public class Dialogue : MonoBehaviour
     public float textSpeed = 0.05f;
     public bool isOutro = false;
     public AudioClip dialogueSound;
-
+    public AudioClip firstLineAudioClip; // Audio for the first line
+    public bool playAudioFirstLine = false; // Boolean to determine if audio plays for the first line
 
     private int index;
     private Coroutine typingCoroutine;
@@ -24,7 +25,14 @@ public class Dialogue : MonoBehaviour
     public void StartDialogue()
     {
         index = 0;
+
+        
         StartTyping();
+        if (playAudioFirstLine && firstLineAudioClip != null)
+        {
+            AudioManager.Instance.PlayOneShot(firstLineAudioClip, false);
+        }
+
     }
 
     IEnumerator TypeLine()
@@ -83,15 +91,6 @@ public class Dialogue : MonoBehaviour
             GameManager.Instance.SwitchState(GameManager.GameState.GAME);
         }
     }
-
-    /*
-    IEnumerator LoadNextScene()
-    {
-        yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("GameOver");
-        gameObject.SetActive(false);
-    }
-    */
 
     private void Update()
     {
