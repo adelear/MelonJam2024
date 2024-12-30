@@ -20,7 +20,12 @@ public class Animal : MonoBehaviour, ICauseDamage
     private AnimalStates currentState;
     private Transform currentTarget;
     private Animator animator;
-    private Rigidbody rb; 
+    private Rigidbody rb;
+
+
+    [SerializeField] private string deadAnim;
+    public AudioClip fallSound;
+    public AudioClip abductSound; 
 
     public AnimalStates CurrentState
     {
@@ -130,6 +135,7 @@ public class Animal : MonoBehaviour, ICauseDamage
     private void SetDeadState()
     {
         Debug.Log("Setting Dead State");
+        animator.Play(deadAnim); 
         Destroy(gameObject, 2f);
     }
 
