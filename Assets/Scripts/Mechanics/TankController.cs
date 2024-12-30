@@ -103,26 +103,24 @@ public class TankController : MonoBehaviour
     {
         if (barrel == null || player == null) return;
         Vector3 direction = player.position - barrel.position;
-        direction.z = 0f;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; 
-        angle = Mathf.Clamp(angle, 0f, 180f);
-        Quaternion targetRotation = Quaternion.Euler(180f, 0f, -angle);
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
         barrel.rotation = Quaternion.Lerp(barrel.rotation, targetRotation, Time.deltaTime * barrelRotationSpeed);
     }
-
 
     private void FireProjectile()
     {
         if (projectilePrefab == null || firePoint == null) return;
-
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, barrel.rotation);
+        // Apply velocity to the projectile
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = barrel.right * projectileSpeed;
+            Vector3 velocity = barrel.TransformDirection(Vector3.forward * projectileSpeed);
+            rb.velocity = velocity;
         }
     }
+
+
 
     private void OnDrawGizmos()
     {
