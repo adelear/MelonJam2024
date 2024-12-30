@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feca01db81df7fc49b7c45fc1e8d923c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 5
   stoppingDistance: 30
   barrel: {fileID: 7436528785681617406}
   player: {fileID: 0}
@@ -619,7 +619,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3503515433400073265, guid: e3c57407b5806034495bf11c513a6edb, type: 3}
   fireCooldown: 2
   barrelRotationSpeed: 5
-  projectileSpeed: 20
+  projectileSpeed: 30
   idleTime: 2
 --- !u!114 &3670775299528752726
 MonoBehaviour:

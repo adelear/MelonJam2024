@@ -27,5 +27,7 @@ public class CrumblesOnVelocity : MonoBehaviour
         crumbledObject.SetActive(true);
         gameObject.SetActive(false);
         Debug.Log("Object crumbled!");
+        Destroy(crumbledObject,10f);
+        Destroy(gameObject,10f); 
     }
 }

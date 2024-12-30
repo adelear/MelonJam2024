@@ -123,6 +123,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7235197397257305400, guid: f621417894ca80745acf40c24cd538ba, type: 3}
   m_PrefabInstance: {fileID: 2474694467315769318}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5581266844348676196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8008320559390287746, guid: f621417894ca80745acf40c24cd538ba, type: 3}
+  m_PrefabInstance: {fileID: 2474694467315769318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7772864633916891634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,9 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e29b1fb97d3d145937516372aca429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crumbledObject: {fileID: 0}
+  crumbledObject: {fileID: 5581266844348676196}
   threshold: 10
-  health: 100
+  health: 200
 --- !u!65 &6858854917419978611
 BoxCollider:
   m_ObjectHideFlags: 0

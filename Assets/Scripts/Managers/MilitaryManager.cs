@@ -7,7 +7,7 @@ public class MilitaryManager : MonoBehaviour
     public static MilitaryManager Instance { get; private set; }
 
     public int militaryPoints = 0;
-    public int maxTanks = 30; 
+    public int maxTanks = 50; 
     public Transform player; 
     public GameObject tankPrefab; 
 
@@ -15,7 +15,7 @@ public class MilitaryManager : MonoBehaviour
     private int[] thresholds = { 10, 15, 20, 30 };
     private Dictionary<int, int> tankSpawnIncrements = new Dictionary<int, int>
     {
-        { 10, 1 }, { 15, 1 }, { 20, 2 }, { 30, 2 } , { 35, 2 } , {40, 3}, {45, 3}, {50, 3 }, {55,3 }, {60, 4 }, {65, 4}, {70, 2} 
+        { 10, 1 }, { 15, 1 }, { 20, 2 }, { 30, 2 } , { 35, 2 } , {40, 3}, {45, 3}, {50, 3 }, {55,3 }, {60, 4 }, {65, 4}, {70, 2}, {75, 5 }, {80,5 }, {85,5 },{90,5 },{95,5 },{100,5 } 
     };
     private List<GameObject> activeTanks = new List<GameObject>();
 

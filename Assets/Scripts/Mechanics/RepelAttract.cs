@@ -141,7 +141,7 @@ public class RepelAttract : MonoBehaviour
         currentObject.GetComponent<Rigidbody>().useGravity = true;
         isAttracting = false;
 
-        if (currentObject.gameObject.GetComponent<Animal>() && hasPlayedRepelAudio)
+        if (currentObject.gameObject.GetComponent<Animal>() && !hasPlayedRepelAudio)
         {
             Animal animal = currentObject.gameObject.GetComponent<Animal>();
             if (animal.abductSound != null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.fallSound, false, 1.2f, 2f, 0.05f);
