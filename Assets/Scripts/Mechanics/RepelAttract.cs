@@ -26,6 +26,7 @@ public class RepelAttract : MonoBehaviour
     [SerializeField] private GameObject attractBeam;
     [SerializeField] private GameObject repelBeam;
     [SerializeField] private AudioClip beamSound;
+    [SerializeField] private AudioClip collectSound; 
     private bool beamSoundPlaying;
     private bool hasPlayedAbductedAudio; 
     private bool hasPlayedRepelAudio; 
@@ -181,7 +182,8 @@ public class RepelAttract : MonoBehaviour
                     break; 
                 default: score = 0; break; 
             }
-            GameManager.Instance.Score += score; 
+            GameManager.Instance.Score += score;
+            AudioManager.Instance.PlayOneShotWithRandomPitch(collectSound, false, 0.8f, 1.2f, 1f); 
             Destroy(other.gameObject); 
         }
     }
