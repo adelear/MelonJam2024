@@ -166,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 96864bd936f668f469aaf403c176a69f, type: 3}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deathVelocityThreshold
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2974067503755293225, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: m_LocalScale.x

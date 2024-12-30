@@ -38,18 +38,30 @@ public class MilitaryManager : MonoBehaviour
 
     private void CheckSpawnConditions()
     {
-        // Calculate the milestone difference since the last spawn
-        int milestone = militaryPoints / 5;
-        if (milestone > lastMilestone)
+        int milestone;
+        int tanksToSpawn;
+
+        if (militaryPoints <= 50)
         {
-            // Determine number of tanks to spawn
-            int tanksToSpawn = milestone > 10 ? 2 : 1; // 2 tanks if militaryPoints > 50 (milestone > 10)
-
-            // Spawn tanks
-            SpawnTanks(tanksToSpawn * (milestone - lastMilestone));
-
-            // Update the last milestone
-            lastMilestone = milestone;
+            // Spawn tanks every 10 points
+            milestone = militaryPoints / 10;
+            if (milestone > lastMilestone)
+            {
+                tanksToSpawn = 1 * (milestone - lastMilestone);
+                SpawnTanks(tanksToSpawn);
+                lastMilestone = milestone;
+            }
+        }
+        else
+        {
+            // Spawn 2 tanks every 5 points after 50 points
+            milestone = (militaryPoints - 50) / 5;
+            if (milestone > lastMilestone)
+            {
+                tanksToSpawn = 2 * (milestone - lastMilestone);
+                SpawnTanks(tanksToSpawn);
+                lastMilestone = milestone;
+            }
         }
     }
 

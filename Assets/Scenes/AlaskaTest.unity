@@ -17560,6 +17560,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow
       objectReference: {fileID: 0}
+    - target: {fileID: 955390286459023186, guid: 8a9cd110ffe6f0c4ba57af7f45d8bd08, type: 3}
+      propertyPath: pointA
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 955390286459023186, guid: 8a9cd110ffe6f0c4ba57af7f45d8bd08, type: 3}
+      propertyPath: pointB
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5667571860125183910, guid: 8a9cd110ffe6f0c4ba57af7f45d8bd08, type: 3}
       propertyPath: m_LocalPosition.x
       value: -82.24649
@@ -19696,7 +19704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
       propertyPath: lines.Array.size
-      value: 4
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
       propertyPath: firstLineAudioClip
@@ -19721,6 +19729,34 @@ PrefabInstance:
     - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
       propertyPath: lines.Array.data[3]
       value: just dropping by to collect some of ur animals :3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[4]
+      value: Hold M1 to use my ATTRACT beam!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[5]
+      value: Hold M2 to use my REPEL beam!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[6]
+      value: Using attract, then repel works great against pesky tanks!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[7]
+      value: To fly the ship, simply use WASD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[8]
+      value: To fly backwards and forwards, use the SCROLL on your mouse!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[9]
+      value: 'Lets go collect some animals! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168626633913997642, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
+      propertyPath: lines.Array.data[10]
+      value: Just... try not to drop them...
       objectReference: {fileID: 0}
     - target: {fileID: 3322551423381422799, guid: e608fe90850e2bf4e84d8a7f41081448, type: 3}
       propertyPath: m_AnchorMax.x
