@@ -7,15 +7,15 @@ public class MilitaryManager : MonoBehaviour
     public static MilitaryManager Instance { get; private set; }
 
     public int militaryPoints = 0;
-    public int maxTanks = 10; 
+    public int maxTanks = 30; 
     public Transform player; 
     public GameObject tankPrefab; 
 
     private int totalSpawnedTanks = 0; 
-    private int[] thresholds = { 10, 15, 20, 30 }; 
+    private int[] thresholds = { 10, 15, 20, 30 };
     private Dictionary<int, int> tankSpawnIncrements = new Dictionary<int, int>
     {
-        { 10, 1 }, { 15, 1 }, { 20, 2 }, { 30, 3 }
+        { 10, 1 }, { 15, 1 }, { 20, 2 }, { 30, 2 } , { 35, 2 } , {40, 3}, {45, 3}, {50, 3 }, {55,3 }, {60, 4 }, {65, 4}, {70, 2} 
     };
     private List<GameObject> activeTanks = new List<GameObject>();
 
@@ -60,7 +60,7 @@ public class MilitaryManager : MonoBehaviour
 
         for (int i = 0; i < count && totalSpawnedTanks < maxTanks; i++)
         {
-            Vector3 spawnPosition = new Vector3(mainCamera.transform.position.x + 20f,1.3f,0f);
+            Vector3 spawnPosition = new Vector3(Random.Range(mainCamera.transform.position.x + 50f, mainCamera.transform.position.x + 100),1.3f,0f);
 
             GameObject newTank = Instantiate(tankPrefab, spawnPosition, Quaternion.identity);
             activeTanks.Add(newTank);

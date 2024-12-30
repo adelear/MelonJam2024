@@ -611,8 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feca01db81df7fc49b7c45fc1e8d923c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  stoppingDistance: 20
+  moveSpeed: 4
+  stoppingDistance: 30
   barrel: {fileID: 7436528785681617406}
   player: {fileID: 0}
   firePoint: {fileID: 3389208844920607527}

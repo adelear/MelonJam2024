@@ -23,6 +23,11 @@ public class TankProjectile : MonoBehaviour, ICauseDamage
             CauseDamageOnImpact(0f, damage, hs); 
             DieUponImpact(); 
         }
+        if (collision.gameObject.GetComponent<Animal>())
+        {
+            Animal animal = collision.gameObject.GetComponent<Animal>();
+            animal.DieUponImpact(); 
+        }
         Destroy(gameObject, 2f); 
     }
 } 
