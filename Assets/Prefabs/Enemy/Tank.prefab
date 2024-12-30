@@ -621,6 +621,7 @@ MonoBehaviour:
   barrelRotationSpeed: 5
   projectileSpeed: 30
   idleTime: 2
+  tankShoot: {fileID: 8300000, guid: cb91d3f711918444abf90b500023abc5, type: 3}
 --- !u!114 &3670775299528752726
 MonoBehaviour:
   m_ObjectHideFlags: 0

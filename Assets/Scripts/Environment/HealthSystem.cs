@@ -74,7 +74,8 @@ public class HealthSystem : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.SwitchState(GameManager.GameState.DEFEAT); 
+            GameManager.Instance.SwitchState(GameManager.GameState.DEFEAT);
+            GameObject.Find("OutroDialogue").SetActive(true); 
         }
         else
         {

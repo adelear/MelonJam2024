@@ -23,7 +23,9 @@ public class TankController : MonoBehaviour
     public float idleTime = 2f; 
 
     private float fireTimer = 0f;
-    private float idleTimer = 0f; 
+    private float idleTimer = 0f;
+
+    [SerializeField] private AudioClip tankShoot; 
 
     private void Start()
     {
@@ -110,6 +112,7 @@ public class TankController : MonoBehaviour
     {
         if (projectilePrefab == null || firePoint == null) return;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, barrel.rotation);
+        AudioManager.Instance.PlayOneShotWithRandomPitch(tankShoot, false, 0.8f, 1.2f, 0.6f);
         // Apply velocity to the projectile
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         if (rb != null)
