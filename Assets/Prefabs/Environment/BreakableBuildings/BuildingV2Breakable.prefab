@@ -228,8 +228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crumbledObject: {fileID: 5581266844348676196}
-  threshold: 20
+  threshold: 10
   health: 200
+  destroyedSound: {fileID: 8300000, guid: f4de044e16befa646bb8545ad00f11ab, type: 3}
 --- !u!65 &6858854917419978611
 BoxCollider:
   m_ObjectHideFlags: 0

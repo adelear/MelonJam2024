@@ -137,7 +137,7 @@ public class Animal : MonoBehaviour, ICauseDamage
     private void SetDeadState()
     {
         Debug.Log("Setting Dead State");
-        animator.Play(deadAnim); 
+        if (animator) animator.Play(deadAnim);  
         Destroy(gameObject, 2f);
     }
 
