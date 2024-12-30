@@ -2,5 +2,6 @@ public enum AnimalType
 {
     Cow,
     Dog,
-    Cat
+    Cat,
+    Human
 }

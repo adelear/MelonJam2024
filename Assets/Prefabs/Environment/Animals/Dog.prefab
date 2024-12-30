@@ -156,6 +156,10 @@ PrefabInstance:
       propertyPath: animalType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: deathVelocityThreshold
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2974067503755293225, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

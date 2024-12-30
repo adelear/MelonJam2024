@@ -23,12 +23,17 @@ public class RepelAttract : MonoBehaviour
 
     public Transform currentObject;
 
+    [SerializeField] private GameObject attractBeam;
+    [SerializeField] private GameObject repelBeam; 
+
     private SphereCollider sc; 
     private void Start()
     {
         timer = 0; 
         sc = GetComponent<SphereCollider>();
         sc.enabled = false;
+        repelBeam.SetActive(false);
+        attractBeam.SetActive(false);
     }
     void Update()
     {
@@ -39,6 +44,8 @@ public class RepelAttract : MonoBehaviour
         RaycastHit hit;
         if (Input.GetMouseButton(0))
         {
+            repelBeam.SetActive(false);
+            attractBeam.SetActive(true);
             if (Physics.Raycast(rayOrigin.position, rayDirection1, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection2, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection3, out hit, rayLength, layermask))
             {
                 Vector3 rayOriginFlat = new Vector3(rayOrigin.position.x, rayOrigin.position.y, 0f);
@@ -60,9 +67,12 @@ public class RepelAttract : MonoBehaviour
                 if (Vector3.Distance(currentObject.position, ship.position) > 0.4f) currentObject.GetComponent<Rigidbody>().useGravity = true;
                 sc.enabled = false;
             }
+            
         }
         else if (Input.GetMouseButton(1))
         {
+            repelBeam.SetActive(true);
+            attractBeam.SetActive(false);
             if (Physics.Raycast(rayOrigin.position, rayDirection1, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection2, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection3, out hit, rayLength, layermask))
             {
                 Debug.Log($"Hit {hit.collider.name}");
@@ -70,10 +80,11 @@ public class RepelAttract : MonoBehaviour
                 RepelObject(currentObject);
                 sc.enabled = false;
             }
-            
         }
         else
         {
+            repelBeam.SetActive(false);
+            attractBeam.SetActive(false);
             if (currentObject != null)
             {
                 currentObject.GetComponent<Rigidbody>().useGravity = true;
@@ -81,13 +92,13 @@ public class RepelAttract : MonoBehaviour
                 sc.enabled = false;
                 isAttracting = false; 
             }
-            
         }
     }
 
-
+     
     private void AttractObject(Transform objectToAttract,float time)
     {
+        
         Vector3 targetPosition = ship.position;
         isAttracting = true; 
         if (Vector3.Distance(objectToAttract.position, targetPosition) > 0.4f)
@@ -123,6 +134,10 @@ public class RepelAttract : MonoBehaviour
                 case AnimalType.Cow: score = 5; break;
                 case AnimalType.Dog: score = 3; break;
                 case AnimalType.Cat: score = 2; break;
+                case AnimalType.Human:
+                    score = Random.Range(-5, -1);
+                    MilitaryManager.Instance.AddMilitaryPoints(5); 
+                    break; 
                 default: score = 0; break; 
             }
             GameManager.Instance.Score += score; 

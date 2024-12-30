@@ -65,6 +65,7 @@ public class Animal : MonoBehaviour, ICauseDamage
         if (!rb)
             Debug.LogError("No Rigidbody found on the Animal!");
 
+        if (animalType == AnimalType.Human) return; 
         currentTarget = pointB;
         CurrentState = AnimalStates.Walking;
 
@@ -81,6 +82,9 @@ public class Animal : MonoBehaviour, ICauseDamage
             case AnimalType.Dog:
                 damage = 5; 
                 break;
+            case AnimalType.Human:
+                damage = 1;
+                break; 
 
             default:
                 break; 
@@ -108,6 +112,7 @@ public class Animal : MonoBehaviour, ICauseDamage
     private void SetWalkingState()
     {
         Debug.Log("Setting Walking State");
+        if (animalType == AnimalType.Human) return; 
         currentTarget = pointB;
     }
 
