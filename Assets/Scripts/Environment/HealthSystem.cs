@@ -15,7 +15,8 @@ public class HealthSystem : MonoBehaviour
     [Header("Health Settings")]
     public int healthMax = 100;
     private int health;
-    float currentHeight; 
+    float currentHeight;
+    [SerializeField] GameObject outroDialogue; 
 
     [Header("UI Settings")]
     public Image healthBarImage;
@@ -75,7 +76,7 @@ public class HealthSystem : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             GameManager.Instance.SwitchState(GameManager.GameState.DEFEAT);
-            GameObject.Find("OutroDialogue").SetActive(true); 
+            outroDialogue.SetActive(true); 
         }
         else
         {

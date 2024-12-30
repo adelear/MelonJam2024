@@ -7,16 +7,12 @@ public class MilitaryManager : MonoBehaviour
     public static MilitaryManager Instance { get; private set; }
 
     public int militaryPoints = 0;
-    public int maxTanks = 50; 
-    public Transform player; 
-    public GameObject tankPrefab; 
+    public int maxTanks = 50;
+    public Transform player;
+    public GameObject tankPrefab;
 
-    private int totalSpawnedTanks = 0; 
-    private int[] thresholds = { 10, 15, 20, 30 };
-    private Dictionary<int, int> tankSpawnIncrements = new Dictionary<int, int>
-    {
-        { 10, 1 }, { 15, 1 }, { 20, 2 }, { 30, 2 } , { 35, 2 } , {40, 3}, {45, 3}, {50, 3 }, {55,3 }, {60, 4 }, {65, 4}, {70, 2}, {75, 5 }, {80,5 }, {85,5 },{90,5 },{95,5 },{100,5 } 
-    };
+    private int totalSpawnedTanks = 0;
+    private int lastMilestone = 0; // Keeps track of the last milestone for spawning tanks
     private List<GameObject> activeTanks = new List<GameObject>();
 
     public void Awake()
@@ -31,7 +27,7 @@ public class MilitaryManager : MonoBehaviour
     private void Update()
     {
         CheckSpawnConditions();
-        player = GameObject.FindGameObjectWithTag("Player").transform; 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void AddMilitaryPoints(int points)
@@ -42,15 +38,18 @@ public class MilitaryManager : MonoBehaviour
 
     private void CheckSpawnConditions()
     {
-        foreach (int threshold in thresholds)
+        // Calculate the milestone difference since the last spawn
+        int milestone = militaryPoints / 5;
+        if (milestone > lastMilestone)
         {
-            if (militaryPoints >= threshold && totalSpawnedTanks < maxTanks)
-            {
-                int tanksToSpawn = tankSpawnIncrements[threshold];
-                SpawnTanks(tanksToSpawn);
-                thresholds = System.Array.FindAll(thresholds, t => t > militaryPoints);
-                break;
-            }
+            // Determine number of tanks to spawn
+            int tanksToSpawn = milestone > 10 ? 2 : 1; // 2 tanks if militaryPoints > 50 (milestone > 10)
+
+            // Spawn tanks
+            SpawnTanks(tanksToSpawn * (milestone - lastMilestone));
+
+            // Update the last milestone
+            lastMilestone = milestone;
         }
     }
 
@@ -60,7 +59,11 @@ public class MilitaryManager : MonoBehaviour
 
         for (int i = 0; i < count && totalSpawnedTanks < maxTanks; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(mainCamera.transform.position.x + 50f, mainCamera.transform.position.x + 100),1.3f,0f);
+            Vector3 spawnPosition = new Vector3(
+                Random.Range(mainCamera.transform.position.x + 50f, mainCamera.transform.position.x + 100),
+                1.3f,
+                0f
+            );
 
             GameObject newTank = Instantiate(tankPrefab, spawnPosition, Quaternion.identity);
             activeTanks.Add(newTank);

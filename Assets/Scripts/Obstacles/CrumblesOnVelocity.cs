@@ -13,7 +13,7 @@ public class CrumblesOnVelocity : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Rigidbody>())
         {
-            Debug.Log("Velocity: " + collision.relativeVelocity.magnitude);
+            //Debug.Log("Velocity: " + collision.relativeVelocity.magnitude);
             if (collision.relativeVelocity.magnitude > threshold)
             {
                 health -= 10; 

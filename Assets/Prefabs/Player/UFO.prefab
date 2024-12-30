@@ -534,6 +534,7 @@ MonoBehaviour:
   attractBeam: {fileID: 7606525494257047319}
   repelBeam: {fileID: 1359847042158712986}
   beamSound: {fileID: 8300000, guid: 78df9b283090f4c4db27226ed94d10f9, type: 3}
+  collectSound: {fileID: 8300000, guid: e5a6a6cfaa0a43a4594f7a4f92cfcd2f, type: 3}
 --- !u!64 &178102488578490699
 MeshCollider:
   m_ObjectHideFlags: 0
