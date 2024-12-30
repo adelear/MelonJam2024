@@ -22,7 +22,6 @@ public class TankController : MonoBehaviour
     [Header("Idle Settings")]
     public float idleTime = 2f; 
 
-    private bool isFlipped = false;
     private float fireTimer = 0f;
     private float idleTimer = 0f; 
 

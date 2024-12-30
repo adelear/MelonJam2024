@@ -111,6 +111,7 @@ public class Animal : MonoBehaviour, ICauseDamage
         if (Vector3.Distance(transform.position, currentTarget.position) < 0.1f)
         {
             currentTarget = currentTarget == pointA ? pointB : pointA;
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX; 
         }
     }
 
