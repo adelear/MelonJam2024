@@ -25,8 +25,11 @@ public class RepelAttract : MonoBehaviour
 
     [SerializeField] private GameObject attractBeam;
     [SerializeField] private GameObject repelBeam;
-    private bool hasPlayedAbductedAudio;
+    [SerializeField] private AudioClip beamSound;
+    private bool beamSoundPlaying;
+    private bool hasPlayedAbductedAudio; 
     private bool hasPlayedRepelAudio; 
+    
 
     private SphereCollider sc; 
     private void Start()
@@ -49,6 +52,11 @@ public class RepelAttract : MonoBehaviour
         RaycastHit hit;
         if (Input.GetMouseButton(0))
         {
+            if (!beamSoundPlaying)
+            {
+                AudioManager.Instance.PlayOneShotWithRandomPitch(beamSound, false, 0.8f, 1.2f, 0.1f);  
+                beamSoundPlaying = true; 
+            }
             repelBeam.SetActive(false);
             attractBeam.SetActive(true);
             if (Physics.Raycast(rayOrigin.position, rayDirection1, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection2, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection3, out hit, rayLength, layermask))
@@ -78,6 +86,11 @@ public class RepelAttract : MonoBehaviour
         {
             repelBeam.SetActive(true);
             attractBeam.SetActive(false);
+            if (!beamSoundPlaying)
+            {
+                AudioManager.Instance.PlayOneShotWithRandomPitch(beamSound, false, 0.8f, 1.2f, 0.1f); 
+                beamSoundPlaying = true;
+            }
             if (Physics.Raycast(rayOrigin.position, rayDirection1, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection2, out hit, rayLength, layermask) || Physics.Raycast(rayOrigin.position, rayDirection3, out hit, rayLength, layermask))
             {
                 Debug.Log($"Hit {hit.collider.name}");
@@ -103,6 +116,7 @@ public class RepelAttract : MonoBehaviour
                 sc.enabled = false;
                 isAttracting = false; 
             }
+            beamSoundPlaying = false; 
         }
     }
 

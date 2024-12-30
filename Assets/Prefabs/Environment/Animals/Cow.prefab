@@ -150,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 2634955322702534744}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: volume
-      value: 0.05
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deadAnim
