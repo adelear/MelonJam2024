@@ -169,6 +169,7 @@ public class RepelAttract : MonoBehaviour
     {
         if (other.GetComponent<Animal>())
         {
+            if (other.GetComponent<Animal>().CurrentState == AnimalStates.Dead) return; 
             Debug.Log("Collected an animal");
             int score = 0; 
             switch (other.GetComponent<Animal>().animalType)
