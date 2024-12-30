@@ -128,7 +128,7 @@ public class RepelAttract : MonoBehaviour
         if (currentObject.gameObject.GetComponent<Animal>() && !hasPlayedAbductedAudio)
         {
             Animal animal = currentObject.gameObject.GetComponent<Animal>();
-            if (animal.abductSound!= null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.abductSound, false, 1.2f, 2f, 0.05f); 
+            if (animal.abductSound!= null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.abductSound, false, 1.2f, 2f, animal.volume); 
             hasPlayedAbductedAudio = true;
             hasPlayedRepelAudio = false; 
         }
@@ -144,7 +144,7 @@ public class RepelAttract : MonoBehaviour
         if (currentObject.gameObject.GetComponent<Animal>() && !hasPlayedRepelAudio)
         {
             Animal animal = currentObject.gameObject.GetComponent<Animal>();
-            if (animal.abductSound != null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.fallSound, false, 1.2f, 2f, 0.05f);
+            if (animal.abductSound != null) AudioManager.Instance.PlayOneShotWithRandomPitch(animal.fallSound, false, 1.2f, 2f, animal.volume);
             hasPlayedRepelAudio = true;
             hasPlayedAbductedAudio = false;
         }

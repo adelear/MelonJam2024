@@ -149,9 +149,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7226875398621701663}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deadAnim
       value: DogDie
       objectReference: {fileID: 0}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: fallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2737aefd795a9854c81b4ca39b508e41, type: 3}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: walkSpeed
       value: 4
@@ -160,6 +168,10 @@ PrefabInstance:
       propertyPath: animalType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
+      propertyPath: abductSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 21949fbe11339a547baac131cb062d4f, type: 3}
     - target: {fileID: 1622736497188810170, guid: 027a1f5d42cc1364b8297baa4e24deca, type: 3}
       propertyPath: deathVelocityThreshold
       value: 30

@@ -140,6 +140,10 @@ MonoBehaviour:
   pointB: {fileID: 0}
   walkSpeed: 2
   deathVelocityThreshold: 30
+  deadAnim: 
+  fallSound: {fileID: 8300000, guid: 6236b792d90418e44850ece3450567e0, type: 3}
+  abductSound: {fileID: 8300000, guid: 6236b792d90418e44850ece3450567e0, type: 3}
+  volume: 0.4
 --- !u!54 &3466289720845096297
 Rigidbody:
   m_ObjectHideFlags: 0

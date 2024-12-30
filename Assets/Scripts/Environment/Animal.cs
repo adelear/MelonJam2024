@@ -25,7 +25,8 @@ public class Animal : MonoBehaviour, ICauseDamage
 
     [SerializeField] private string deadAnim;
     public AudioClip fallSound;
-    public AudioClip abductSound; 
+    public AudioClip abductSound;
+    public float volume; 
 
     public AnimalStates CurrentState
     {
